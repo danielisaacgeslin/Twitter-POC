@@ -1,0 +1,87 @@
+{
+	"basePath": "",
+	"consumes": [
+		"application/json"
+	],
+	"definitions": {
+		"TweetModel": {
+			"properties": {},
+			"type": "object"
+		},
+		"TweetsResponseModel": {
+			"properties": {
+				"statuses": {
+					"type": "array",
+					"items": {
+						"$ref": "#/definitions/TweetModel"
+					}
+				},
+				"search_metadata": {
+					"type": "object"
+				}
+			},
+			"required": [
+				"statuses",
+				"search_metadata"
+			],
+			"type": "object"
+		}
+	},
+	"info": {
+		"title": "hotels-back",
+		"version": "1.0.0",
+		"license": {
+			"name": "ISC"
+		}
+	},
+	"paths": {
+		"/twitter": {
+			"get": {
+				"operationId": "GetById",
+				"produces": [
+					"application/json"
+				],
+				"responses": {
+					"200": {
+						"description": "Ok",
+						"schema": {
+							"$ref": "#/definitions/TweetsResponseModel"
+						}
+					}
+				},
+				"security": [],
+				"parameters": [
+					{
+						"in": "query",
+						"name": "query",
+						"required": true,
+						"type": "string"
+					}
+				]
+			}
+		},
+		"/ping": {
+			"get": {
+				"operationId": "Ping",
+				"produces": [
+					"application/json"
+				],
+				"responses": {
+					"200": {
+						"description": "Ok",
+						"schema": {
+							"type": "string"
+						}
+					}
+				},
+				"security": [],
+				"parameters": []
+			}
+		}
+	},
+	"produces": [
+		"application/json"
+	],
+	"swagger": "2.0",
+	"securityDefinitions": {}
+}
